@@ -1,6 +1,5 @@
 package org.selenium;
 
-import org.openqa.selenium.By;
 import org.selenium.pom.base.BaseTest;
 import org.selenium.pom.pages.CartPage;
 import org.selenium.pom.pages.CheckoutPage;
@@ -104,7 +103,7 @@ public class MyFirstTestCase extends BaseTest {
                 enterTextInEmail("cschiragsharma@gmail.com");
         Thread.sleep(5000);
         checkoutPage.clickPlaceOrderBtn();
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         Assert.assertEquals(checkoutPage.getSuccessNotice(),"Thank you. Your order has been received.");
         //System.setProperty("webdriver.chrome.driver","/Users/thechiragsharma/Documents/chromedriver.exe");
 //        WebDriver driver = new ChromeDriver();
