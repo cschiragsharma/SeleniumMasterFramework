@@ -18,7 +18,7 @@ public class CheckoutPage extends BasePage {
         private final By password = By.cssSelector("#password");
         private final By loginBtn = By.cssSelector("button[value='Login']");
         private final By placeOrderBtn = By.cssSelector("#place_order");
-        private final By sucessNotice = By.cssSelector(".woocommerce-notice");
+        private final By successNotice = By.cssSelector(".woocommerce-notice");
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -64,7 +64,7 @@ public class CheckoutPage extends BasePage {
     }
 
     public String getSuccessNotice(){
-        return driver.findElement(sucessNotice).getText();
+        return driver.findElement(successNotice).getText();
     }
     public CheckoutPage showLoginBtn(){
         driver.findElement(showLoginBtn).click();
@@ -72,14 +72,18 @@ public class CheckoutPage extends BasePage {
 
     }
 
-    public CheckoutPage enterUsername(String txt) {
+    private CheckoutPage enterUsername(String txt) {
         driver.findElement(username).sendKeys(txt);
         return this;
     }
 
-    public CheckoutPage enterPassword(String txt) {
+    private CheckoutPage enterPassword(String txt) {
         driver.findElement(password).sendKeys(txt);
         return this;
+    }
+
+    public CheckoutPage login(String username, String password){
+        return enterUsername(username).enterPassword(password).clickLoginBtn();
     }
     public CheckoutPage clickLoginBtn(){
         driver.findElement(loginBtn);
