@@ -1,6 +1,7 @@
 package org.selenium;
 
 import org.selenium.pom.base.BaseTest;
+import org.selenium.pom.objects.BillingAddress;
 import org.selenium.pom.pages.CartPage;
 import org.selenium.pom.pages.CheckoutPage;
 import org.selenium.pom.pages.HomePage;
@@ -12,6 +13,14 @@ public class MyFirstTestCase extends BaseTest {
 
     @Test
     public void GuestCheckoutUsingDirectBankTransfer() throws InterruptedException {
+        BillingAddress billingAddress = new BillingAddress();
+        billingAddress.setFirstName("demo");
+        billingAddress.setLastName("user");
+        billingAddress.setAddress1("San Francisco");
+        billingAddress.setAddress2("San Francisco");
+        billingAddress.setCity("San Francisco");
+        billingAddress.setPostalCode("94188");
+        billingAddress.setEmail("cschiragsharma@gmail.com");
 
         StorePage storePage= new HomePage(driver).
                 load().
@@ -23,14 +32,9 @@ public class MyFirstTestCase extends BaseTest {
         Thread.sleep(10000);
         CartPage cartPage = storePage.viewCartBtn();
         Assert.assertEquals(cartPage.getProductName(),"Blue Shoes");
-        CheckoutPage checkoutPage = cartPage.clickCheckoutBtn();
-        checkoutPage.enterTextInFirstName("demo").
-                enterTextInLastName("user").
-                enterTextInAddress1("San Francisco").
-                enterTextInAddress2("San Francisco").
-                enterTextInCity("San Francisco").
-                enterTextInPostcode("94188").
-                enterTextInEmail("cschiragsharma@gmail.com");
+        CheckoutPage checkoutPage = cartPage.
+                clickCheckoutBtn().
+                setBillingAddress(billingAddress);
         Thread.sleep(5000);
         checkoutPage.clickPlaceOrderBtn();
         Thread.sleep(5000);
@@ -39,6 +43,14 @@ public class MyFirstTestCase extends BaseTest {
     }
     @Test
     public void LoginAndCheckoutUsingDirectBankTransfer() throws InterruptedException {
+        BillingAddress billingAddress = new BillingAddress();
+        billingAddress.setFirstName("demo");
+        billingAddress.setLastName("user");
+        billingAddress.setAddress1("San Francisco");
+        billingAddress.setAddress2("San Francisco");
+        billingAddress.setCity("San Francisco");
+        billingAddress.setPostalCode("94188");
+        billingAddress.setEmail("cschiragsharma@gmail.com");
 
         StorePage storePage= new HomePage(driver).
                 load().
@@ -59,13 +71,7 @@ public class MyFirstTestCase extends BaseTest {
 
         checkoutPage.
                 login("demouser0909","demopass").
-                enterTextInFirstName("demo").
-                enterTextInLastName("user").
-                enterTextInAddress1("San Francisco").
-                enterTextInAddress2("San Francisco").
-                enterTextInCity("San Francisco").
-                enterTextInPostcode("94188").
-                enterTextInEmail("cschiragsharma@gmail.com");
+                setBillingAddress(billingAddress);
         Thread.sleep(5000);
         checkoutPage.clickPlaceOrderBtn();
         Thread.sleep(3000);

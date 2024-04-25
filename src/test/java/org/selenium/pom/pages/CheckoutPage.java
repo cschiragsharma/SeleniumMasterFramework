@@ -3,6 +3,7 @@ package org.selenium.pom.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.selenium.pom.base.BasePage;
+import org.selenium.pom.objects.BillingAddress;
 
 public class CheckoutPage extends BasePage {
 
@@ -24,38 +25,54 @@ public class CheckoutPage extends BasePage {
         super(driver);
     }
     public CheckoutPage enterTextInFirstName(String txt) {
+        driver.findElement(firstName).clear();
         driver.findElement(firstName).sendKeys(txt);
         return this;
     }
 
     public CheckoutPage enterTextInLastName(String txt) {
+        driver.findElement(lastName).clear();
         driver.findElement(lastName).sendKeys(txt);
         return this;
     }
 
     public CheckoutPage enterTextInAddress1(String txt) {
+        driver.findElement(address1).clear();
         driver.findElement(address1).sendKeys(txt);
         return this;
     }
 
     public CheckoutPage enterTextInAddress2(String txt) {
+        driver.findElement(address2).clear();
         driver.findElement(address2).sendKeys(txt);
         return this;
     }
 
     public CheckoutPage enterTextInCity(String txt) {
+        driver.findElement(address2).clear();
         driver.findElement(city).sendKeys(txt);
         return this;
     }
 
     public CheckoutPage enterTextInPostcode(String txt) {
+        driver.findElement(postcode).clear();
         driver.findElement(postcode).sendKeys(txt);
         return this;
     }
 
     public CheckoutPage enterTextInEmail(String txt) {
+        driver.findElement(email).clear();
         driver.findElement(email).sendKeys(txt);
         return this;
+    }
+    public CheckoutPage setBillingAddress(BillingAddress billingAddress){
+        return enterTextInFirstName(billingAddress.getFirstName()).
+                enterTextInLastName(billingAddress.getLastName()).
+                enterTextInAddress1(billingAddress.getAddress1()).
+                enterTextInAddress2(billingAddress.getAddress2()).
+                enterTextInCity(billingAddress.getCity()).
+                enterTextInPostcode(billingAddress.getPostalCode()).
+                enterTextInEmail(billingAddress.getEmail());
     }
 
     public CheckoutPage clickPlaceOrderBtn(){
@@ -73,11 +90,13 @@ public class CheckoutPage extends BasePage {
     }
 
     private CheckoutPage enterUsername(String txt) {
+        driver.findElement(username).clear();
         driver.findElement(username).sendKeys(txt);
         return this;
     }
 
     private CheckoutPage enterPassword(String txt) {
+        driver.findElement(password).clear();
         driver.findElement(password).sendKeys(txt);
         return this;
     }
