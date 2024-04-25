@@ -13,14 +13,9 @@ public class MyFirstTestCase extends BaseTest {
 
     @Test
     public void GuestCheckoutUsingDirectBankTransfer() throws InterruptedException {
-        BillingAddress billingAddress = new BillingAddress();
-        billingAddress.setFirstName("demo");
-        billingAddress.setLastName("user");
-        billingAddress.setAddress1("San Francisco");
-        billingAddress.setAddress2("San Francisco");
-        billingAddress.setCity("San Francisco");
-        billingAddress.setPostalCode("94188");
-        billingAddress.setEmail("cschiragsharma@gmail.com");
+        BillingAddress billingAddress = new BillingAddress("demo","user",
+                "San Francisco","San Francisco","San Francisco",
+                "94188","cschiragsharma@gmail.com");
 
         StorePage storePage= new HomePage(driver).
                 load().
@@ -43,14 +38,10 @@ public class MyFirstTestCase extends BaseTest {
     }
     @Test
     public void LoginAndCheckoutUsingDirectBankTransfer() throws InterruptedException {
-        BillingAddress billingAddress = new BillingAddress();
-        billingAddress.setFirstName("demo");
-        billingAddress.setLastName("user");
-        billingAddress.setAddress1("San Francisco");
-        billingAddress.setAddress2("San Francisco");
-        billingAddress.setCity("San Francisco");
-        billingAddress.setPostalCode("94188");
-        billingAddress.setEmail("cschiragsharma@gmail.com");
+        BillingAddress billingAddress = new BillingAddress("demo","user",
+                "San Francisco","San Francisco","San Francisco",
+                "94188","cschiragsharma@gmail.com");
+
 
         StorePage storePage= new HomePage(driver).
                 load().
