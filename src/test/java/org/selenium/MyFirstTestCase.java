@@ -1,21 +1,29 @@
 package org.selenium;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.selenium.pom.base.BaseTest;
 import org.selenium.pom.objects.BillingAddress;
 import org.selenium.pom.pages.CartPage;
 import org.selenium.pom.pages.CheckoutPage;
 import org.selenium.pom.pages.HomePage;
 import org.selenium.pom.pages.StorePage;
+import org.selenium.pom.utils.JacksonUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MyFirstTestCase extends BaseTest {
 
     @Test
-    public void GuestCheckoutUsingDirectBankTransfer() throws InterruptedException {
-        BillingAddress billingAddress = new BillingAddress("demo","user",
-                "San Francisco","San Francisco","San Francisco",
-                "94188","cschiragsharma@gmail.com");
+    public void GuestCheckoutUsingDirectBankTransfer() throws InterruptedException, IOException {
+        BillingAddress billingAddress = new BillingAddress();
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("myBillingAddress.json");
+
+        billingAddress = JacksonUtils.deserializeJson(inputStream,billingAddress);
+
 
         StorePage storePage= new HomePage(driver).
                 load().
@@ -37,10 +45,11 @@ public class MyFirstTestCase extends BaseTest {
 
     }
     @Test
-    public void LoginAndCheckoutUsingDirectBankTransfer() throws InterruptedException {
-        BillingAddress billingAddress = new BillingAddress("demo","user",
-                "San Francisco","San Francisco","San Francisco",
-                "94188","cschiragsharma@gmail.com");
+    public void LoginAndCheckoutUsingDirectBankTransfer() throws InterruptedException, IOException {
+        BillingAddress billingAddress = new BillingAddress();
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("myBillingAddress.json");
+
+        billingAddress = JacksonUtils.deserializeJson(inputStream,billingAddress);
 
 
         StorePage storePage= new HomePage(driver).

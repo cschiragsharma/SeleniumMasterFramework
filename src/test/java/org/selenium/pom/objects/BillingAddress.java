@@ -9,6 +9,10 @@ public class BillingAddress {
     private String postalCode;
     private String email;
 
+    public BillingAddress() {
+
+    }
+
     public String getFirstName() {
         return firstName;
     }
