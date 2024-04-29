@@ -1,6 +1,5 @@
 package org.selenium.pom.base;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class BasePage {
@@ -9,6 +8,10 @@ public class BasePage {
 
     public BasePage(WebDriver driver){
         this.driver= driver;
+    }
+
+    public void load(String endPoint){
+        driver.get("https://askomdch.com"+endPoint);
     }
 
 }
