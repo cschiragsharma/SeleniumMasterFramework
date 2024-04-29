@@ -3,6 +3,7 @@ package org.selenium;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.selenium.pom.base.BaseTest;
 import org.selenium.pom.objects.BillingAddress;
+import org.selenium.pom.objects.LoginUser;
 import org.selenium.pom.objects.Product;
 import org.selenium.pom.pages.CartPage;
 import org.selenium.pom.pages.CheckoutPage;
@@ -46,6 +47,7 @@ public class MyFirstTestCase extends BaseTest {
     public void LoginAndCheckoutUsingDirectBankTransfer() throws InterruptedException, IOException {
         BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json",BillingAddress.class);
         Product product = new Product(1215);
+        LoginUser loginUser= new LoginUser("demouser0909","demopass");
 
         StorePage storePage= new HomePage(driver).
                 load().
@@ -65,7 +67,7 @@ public class MyFirstTestCase extends BaseTest {
         Thread.sleep(5000);
 
         checkoutPage.
-                login("demouser0909","demopass").
+                login(loginUser).
                 setBillingAddress(billingAddress);
         Thread.sleep(5000);
         checkoutPage.clickPlaceOrderBtn();
