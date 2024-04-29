@@ -21,14 +21,15 @@ public class MyFirstTestCase extends BaseTest {
 
     @Test
     public void GuestCheckoutUsingDirectBankTransfer() throws InterruptedException, IOException {
+        String searchFor="Blue";
         BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json",BillingAddress.class);
         Product product = new Product(1215);
 
         StorePage storePage= new HomePage(driver).
                 load().
                 navigateToStoreUsingMenu().
-                search("Blue");
-        Assert.assertEquals(storePage.getTitle(),"Search results: “Blue”");
+                search(searchFor);
+        Assert.assertEquals(storePage.getTitle(),"Search results: “"+searchFor+"”");
 
         storePage.clickAddToCartBtn(product.getName());
         Thread.sleep(10000);
@@ -45,6 +46,7 @@ public class MyFirstTestCase extends BaseTest {
     }
     @Test
     public void LoginAndCheckoutUsingDirectBankTransfer() throws InterruptedException, IOException {
+        String searchFor="Blue";
         BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json",BillingAddress.class);
         Product product = new Product(1215);
         LoginUser loginUser= new LoginUser("demouser0909","demopass");
@@ -52,8 +54,8 @@ public class MyFirstTestCase extends BaseTest {
         StorePage storePage= new HomePage(driver).
                 load().
                 navigateToStoreUsingMenu().
-                search("Blue");
-        Assert.assertEquals(storePage.getTitle(),"Search results: “Blue”");
+                search(searchFor);
+        Assert.assertEquals(storePage.getTitle(),"Search results: “"+searchFor+"”");
 
         storePage.clickAddToCartBtn(product.getName());
         Thread.sleep(10000);
