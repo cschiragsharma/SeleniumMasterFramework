@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.selenium.pom.base.BasePage;
 import org.selenium.pom.objects.BillingAddress;
+import org.selenium.pom.objects.LoginUser;
 
 public class CheckoutPage extends BasePage {
 
@@ -101,8 +102,12 @@ public class CheckoutPage extends BasePage {
         return this;
     }
 
-    public CheckoutPage login(String username, String password){
-        return enterUsername(username).enterPassword(password).clickLoginBtn();
+    public CheckoutPage login(LoginUser loginUser){
+
+     return   enterUsername(loginUser.getUsername()).
+            enterPassword(loginUser.getPassword()).
+            clickLoginBtn();
+
     }
     public CheckoutPage clickLoginBtn(){
         driver.findElement(loginBtn);

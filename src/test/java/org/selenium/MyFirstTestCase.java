@@ -3,6 +3,8 @@ package org.selenium;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.selenium.pom.base.BaseTest;
 import org.selenium.pom.objects.BillingAddress;
+import org.selenium.pom.objects.LoginUser;
+import org.selenium.pom.objects.Product;
 import org.selenium.pom.pages.CartPage;
 import org.selenium.pom.pages.CheckoutPage;
 import org.selenium.pom.pages.HomePage;
@@ -19,22 +21,20 @@ public class MyFirstTestCase extends BaseTest {
 
     @Test
     public void GuestCheckoutUsingDirectBankTransfer() throws InterruptedException, IOException {
-        BillingAddress billingAddress = new BillingAddress();
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("myBillingAddress.json");
-
-        billingAddress = JacksonUtils.deserializeJson(inputStream,billingAddress);
-
+        String searchFor="Blue";
+        BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json",BillingAddress.class);
+        Product product = new Product(1215);
 
         StorePage storePage= new HomePage(driver).
                 load().
                 navigateToStoreUsingMenu().
-                search("Blue");
-        Assert.assertEquals(storePage.getTitle(),"Search results: “Blue”");
+                search(searchFor);
+        Assert.assertEquals(storePage.getTitle(),"Search results: “"+searchFor+"”");
 
-        storePage.clickAddToCartBtn("Blue Shoes");
+        storePage.clickAddToCartBtn(product.getName());
         Thread.sleep(10000);
         CartPage cartPage = storePage.viewCartBtn();
-        Assert.assertEquals(cartPage.getProductName(),"Blue Shoes");
+        Assert.assertEquals(cartPage.getProductName(),product.getName());
         CheckoutPage checkoutPage = cartPage.
                 clickCheckoutBtn().
                 setBillingAddress(billingAddress);
@@ -46,22 +46,21 @@ public class MyFirstTestCase extends BaseTest {
     }
     @Test
     public void LoginAndCheckoutUsingDirectBankTransfer() throws InterruptedException, IOException {
-        BillingAddress billingAddress = new BillingAddress();
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("myBillingAddress.json");
-
-        billingAddress = JacksonUtils.deserializeJson(inputStream,billingAddress);
-
+        String searchFor="Blue";
+        BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json",BillingAddress.class);
+        Product product = new Product(1215);
+        LoginUser loginUser= new LoginUser("demouser0909","demopass");
 
         StorePage storePage= new HomePage(driver).
                 load().
                 navigateToStoreUsingMenu().
-                search("Blue");
-        Assert.assertEquals(storePage.getTitle(),"Search results: “Blue”");
+                search(searchFor);
+        Assert.assertEquals(storePage.getTitle(),"Search results: “"+searchFor+"”");
 
-        storePage.clickAddToCartBtn("Blue Shoes");
+        storePage.clickAddToCartBtn(product.getName());
         Thread.sleep(10000);
         CartPage cartPage = storePage.viewCartBtn();
-        Assert.assertEquals(cartPage.getProductName(),"Blue Shoes");
+        Assert.assertEquals(cartPage.getProductName(),product.getName());
         CheckoutPage checkoutPage = cartPage.clickCheckoutBtn();
 
         //login functionality
@@ -70,7 +69,7 @@ public class MyFirstTestCase extends BaseTest {
         Thread.sleep(5000);
 
         checkoutPage.
-                login("demouser0909","demopass").
+                login(loginUser).
                 setBillingAddress(billingAddress);
         Thread.sleep(5000);
         checkoutPage.clickPlaceOrderBtn();
