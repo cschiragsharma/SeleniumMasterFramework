@@ -19,11 +19,7 @@ public class MyFirstTestCase extends BaseTest {
 
     @Test
     public void GuestCheckoutUsingDirectBankTransfer() throws InterruptedException, IOException {
-        BillingAddress billingAddress = new BillingAddress();
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("myBillingAddress.json");
-
-        billingAddress = JacksonUtils.deserializeJson(inputStream,billingAddress);
-
+        BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json",BillingAddress.class);
 
         StorePage storePage= new HomePage(driver).
                 load().
@@ -46,10 +42,7 @@ public class MyFirstTestCase extends BaseTest {
     }
     @Test
     public void LoginAndCheckoutUsingDirectBankTransfer() throws InterruptedException, IOException {
-        BillingAddress billingAddress = new BillingAddress();
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("myBillingAddress.json");
-
-        billingAddress = JacksonUtils.deserializeJson(inputStream,billingAddress);
+        BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json",BillingAddress.class);
 
 
         StorePage storePage= new HomePage(driver).
