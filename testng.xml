@@ -1,17 +1,13 @@
 <suite name="Suite1" verbose="1" >
-    <!--<test name="Firefox">
-        &lt;!&ndash;<packages>
-            <package name="org.selenium.pom.test" />
-        </packages>&ndash;&gt;
+    <test name="Firefox">
+
         <parameter name="browser" value="FIREFOX"/>
         <classes>
             <class name="org.selenium.pom.test.MyFirstTestCase" >
-            &lt;!&ndash;<methods>
-                <include name="GuestCheckoutUsingDirectBankTransfer" />
-            </methods>&ndash;&gt;
+
             </class>
         </classes>
-    </test>-->
+    </test>
     <test name="Chrome">
 
         <parameter name="browser" value="CHROME"/>
