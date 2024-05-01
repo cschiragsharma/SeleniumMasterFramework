@@ -86,14 +86,7 @@ public class CheckoutPage extends BasePage {
     }
 
     public CheckoutPage clickPlaceOrderBtn(){
-        List<WebElement> overlays = driver.findElements(overlay);
-        System.out.println("OVERLAY SIZE: " +overlays.size());
-        if(overlays.size()>0){
-            //explicit wait
-          new WebDriverWait(driver, Duration.ofSeconds(15)).until(
-                  ExpectedConditions.invisibilityOfAllElements(overlays)
-          );
-        }
+        waitForOverlaysToDisappear(overlay);
         driver.findElement(placeOrderBtn).click();
         return this;
     }
