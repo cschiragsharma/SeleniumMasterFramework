@@ -1,9 +1,5 @@
 package org.selenium.pom.objects;
 
-import org.selenium.pom.utils.JacksonUtils;
-
-import java.io.IOException;
-
 public class LoginUser {
     private String username;
     private String password;

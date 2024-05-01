@@ -1,6 +1,5 @@
 package org.selenium;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.selenium.pom.base.BaseTest;
 import org.selenium.pom.objects.BillingAddress;
 import org.selenium.pom.objects.LoginUser;
@@ -13,39 +12,38 @@ import org.selenium.pom.utils.JacksonUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 public class MyFirstTestCase extends BaseTest {
 
     @Test
-    public void GuestCheckoutUsingDirectBankTransfer() throws InterruptedException, IOException {
+    public void GuestCheckoutUsingDirectBankTransfer() throws IOException {
         String searchFor="Blue";
         BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json",BillingAddress.class);
         Product product = new Product(1215);
 
         StorePage storePage= new HomePage(driver).
                 load().
-                navigateToStoreUsingMenu().
-                search(searchFor);
+                navigateToStoreUsingMenu();
+        storePage.isLoaded();
+                storePage.search(searchFor);
         Assert.assertEquals(storePage.getTitle(),"Search results: “"+searchFor+"”");
 
         storePage.clickAddToCartBtn(product.getName());
-        Thread.sleep(10000);
+
         CartPage cartPage = storePage.viewCartBtn();
+        cartPage.isLoaded();
         Assert.assertEquals(cartPage.getProductName(),product.getName());
         CheckoutPage checkoutPage = cartPage.
                 clickCheckoutBtn().
-                setBillingAddress(billingAddress);
-        Thread.sleep(5000);
-        checkoutPage.clickPlaceOrderBtn();
-        Thread.sleep(5000);
+                setBillingAddress(billingAddress).
+                clickPlaceOrderBtn();
+
         Assert.assertEquals(checkoutPage.getSuccessNotice(),"Thank you. Your order has been received.");
 
     }
     @Test
-    public void LoginAndCheckoutUsingDirectBankTransfer() throws InterruptedException, IOException {
+    public void LoginAndCheckoutUsingDirectBankTransfer() throws IOException {
         String searchFor="Blue";
         BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json",BillingAddress.class);
         Product product = new Product(1215);
@@ -58,22 +56,18 @@ public class MyFirstTestCase extends BaseTest {
         Assert.assertEquals(storePage.getTitle(),"Search results: “"+searchFor+"”");
 
         storePage.clickAddToCartBtn(product.getName());
-        Thread.sleep(10000);
+
         CartPage cartPage = storePage.viewCartBtn();
         Assert.assertEquals(cartPage.getProductName(),product.getName());
         CheckoutPage checkoutPage = cartPage.clickCheckoutBtn();
 
         //login functionality
 
-        checkoutPage.showLoginBtn();
-        Thread.sleep(5000);
-
-        checkoutPage.
+        checkoutPage.showLoginBtn().
                 login(loginUser).
-                setBillingAddress(billingAddress);
-        Thread.sleep(5000);
-        checkoutPage.clickPlaceOrderBtn();
-        Thread.sleep(3000);
+                setBillingAddress(billingAddress).
+                clickPlaceOrderBtn();
+
         Assert.assertEquals(checkoutPage.getSuccessNotice(),"Thank you. Your order has been received.");
 
     }
