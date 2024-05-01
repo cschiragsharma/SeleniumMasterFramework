@@ -22,7 +22,7 @@ public class MyFirstTestCase extends BaseTest {
         BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json",BillingAddress.class);
         Product product = new Product(1215);
 
-        StorePage storePage= new HomePage(driver).
+        StorePage storePage= new HomePage(getDriver()).
                 load().
                 navigateToStoreUsingMenu();
         storePage.isLoaded();
@@ -50,7 +50,7 @@ public class MyFirstTestCase extends BaseTest {
         Product product = new Product(1215);
         LoginUser loginUser= new LoginUser("demouser0909","demopass");
 
-        StorePage storePage= new HomePage(driver).
+        StorePage storePage= new HomePage(getDriver()).
                 load().
                 navigateToStoreUsingMenu().
                 search(searchFor);
