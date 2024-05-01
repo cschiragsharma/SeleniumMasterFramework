@@ -3,8 +3,13 @@
         <!--<packages>
             <package name="org.selenium.pom.test" />
         </packages>-->
+        <parameter name="browser" value="CHROME"/>
         <classes>
-            <class name="org.selenium.pom.test.MyFirstTestCase" />
+            <class name="org.selenium.pom.test.MyFirstTestCase" >
+            <!--<methods>
+                <include name="GuestCheckoutUsingDirectBankTransfer" />
+            </methods>-->
+            </class>
         </classes>
     </test>
 </suite>
