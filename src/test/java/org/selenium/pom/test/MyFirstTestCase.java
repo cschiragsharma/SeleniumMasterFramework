@@ -1,4 +1,4 @@
-package org.selenium;
+package org.selenium.pom.test;
 
 import org.selenium.pom.base.BaseTest;
 import org.selenium.pom.objects.BillingAddress;
