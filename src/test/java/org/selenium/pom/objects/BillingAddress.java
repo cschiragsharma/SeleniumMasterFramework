@@ -8,6 +8,26 @@ public class BillingAddress {
     private String city;
     private String postalCode;
     private String email;
+    private String country;
+    private String State;
+
+    public String getCountry() {
+        return country;
+    }
+
+    public BillingAddress setCountry(String country) {
+        this.country = country;
+        return this;
+    }
+
+    public String getState() {
+        return State;
+    }
+
+    public BillingAddress setState(String state) {
+        this.State = state;
+        return this;
+    }
 
     public BillingAddress() {
 

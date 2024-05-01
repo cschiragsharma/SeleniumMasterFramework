@@ -1,0 +1,20 @@
+<suite name="Suite1" verbose="1" parallel = "tests">
+    <test name="Firefox" parallel = "methods">
+
+        <parameter name="browser" value="FIREFOX"/>
+        <classes>
+            <class name="org.selenium.pom.test.MyFirstTestCase" >
+
+            </class>
+        </classes>
+    </test>
+    <test name="Chrome" parallel = "methods">
+
+        <parameter name="browser" value="CHROME"/>
+        <classes>
+            <class name="org.selenium.pom.test.MyFirstTestCase" >
+
+            </class>
+        </classes>
+    </test>
+</suite>
