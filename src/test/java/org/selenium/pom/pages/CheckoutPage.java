@@ -27,6 +27,7 @@ public class CheckoutPage extends BasePage {
         private final By overlay = By.cssSelector(".blockUI.blockOverlay");
         private final By countryDropDown = By.id("billing_country");
         private final By stateDropDown = By.id("billing_state");
+        private final By directBankTransferRadioButton = By.id("payment_method_bacs");
 
 
     public CheckoutPage(WebDriver driver) {
@@ -144,6 +145,14 @@ public class CheckoutPage extends BasePage {
         waitForElementToBeVisible(loginBtn).click();
         return this;
 
+    }
+    public CheckoutPage selectDirectBankTransfer(){
+            WebElement e = waitForElementToBeVisible(directBankTransferRadioButton);
+            if(!e.isSelected()){
+                e.click();
+
+            }
+            return this;
     }
 
 }
