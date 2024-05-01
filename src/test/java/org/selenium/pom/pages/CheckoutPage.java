@@ -1,10 +1,18 @@
 package org.selenium.pom.pages;
 
+import io.opentelemetry.exporter.logging.SystemOutLogRecordExporter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.selenium.pom.base.BasePage;
 import org.selenium.pom.objects.BillingAddress;
 import org.selenium.pom.objects.LoginUser;
+
+import java.time.Duration;
+import java.util.List;
 
 public class CheckoutPage extends BasePage {
 
@@ -21,6 +29,7 @@ public class CheckoutPage extends BasePage {
         private final By loginBtn = By.cssSelector("button[value='Login']");
         private final By placeOrderBtn = By.cssSelector("#place_order");
         private final By successNotice = By.cssSelector(".woocommerce-notice");
+        private final By overlay = By.cssSelector(".blockUI.blockOverlay");
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -77,6 +86,14 @@ public class CheckoutPage extends BasePage {
     }
 
     public CheckoutPage clickPlaceOrderBtn(){
+        List<WebElement> overlays = driver.findElements(overlay);
+        System.out.println("OVERLAY SIZE: " +overlays.size());
+        if(overlays.size()>0){
+            //explicit wait
+          new WebDriverWait(driver, Duration.ofSeconds(15)).until(
+                  ExpectedConditions.invisibilityOfAllElements(overlays)
+          );
+        }
         driver.findElement(placeOrderBtn).click();
         return this;
     }
