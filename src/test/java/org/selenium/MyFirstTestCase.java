@@ -27,13 +27,15 @@ public class MyFirstTestCase extends BaseTest {
 
         StorePage storePage= new HomePage(driver).
                 load().
-                navigateToStoreUsingMenu().
-                search(searchFor);
+                navigateToStoreUsingMenu();
+        storePage.isLoaded();
+                storePage.search(searchFor);
         Assert.assertEquals(storePage.getTitle(),"Search results: “"+searchFor+"”");
 
         storePage.clickAddToCartBtn(product.getName());
 
         CartPage cartPage = storePage.viewCartBtn();
+        cartPage.isLoaded();
         Assert.assertEquals(cartPage.getProductName(),product.getName());
         CheckoutPage checkoutPage = cartPage.
                 clickCheckoutBtn().
