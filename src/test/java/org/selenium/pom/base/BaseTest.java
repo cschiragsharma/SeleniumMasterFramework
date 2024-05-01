@@ -20,11 +20,14 @@ public class BaseTest {
     @Parameters("browser")
     @BeforeMethod
     public void startDriver(String browser){
+        browser = System.getProperty("browser",browser);
         setDriver(new DriverManager().initializeDriver(browser));
+        System.out.println("CURRENT THREAD: "+Thread.currentThread().getId()+", DRIVER: "+getDriver());
 
     }
     @AfterMethod
     public void quitMethod(){
+        System.out.println("CURRENT THREAD: "+Thread.currentThread().getId()+", DRIVER: "+getDriver());
         getDriver().quit();
 
     }

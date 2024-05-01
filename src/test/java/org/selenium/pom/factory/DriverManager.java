@@ -10,8 +10,7 @@ public class DriverManager {
     public WebDriver initializeDriver(String browser){
         WebDriver driver;
 
-        browser = System.getProperty("browser",browser); //maven
-        //localBrowser = browser; //testNG browser
+
         driver = switch (DriverType.valueOf(browser)) {
             case CHROME -> {
                 WebDriverManager.chromedriver().cachePath("Drivers").setup();
