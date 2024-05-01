@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.selenium.pom.base.BasePage;
 import org.selenium.pom.objects.BillingAddress;
 import org.selenium.pom.objects.LoginUser;
@@ -24,6 +25,9 @@ public class CheckoutPage extends BasePage {
         private final By placeOrderBtn = By.cssSelector("#place_order");
         private final By successNotice = By.cssSelector(".woocommerce-notice");
         private final By overlay = By.cssSelector(".blockUI.blockOverlay");
+        private final By countryDropDown = By.id("billing_country");
+        private final By stateDropDown = By.id("billing_state");
+
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -32,6 +36,16 @@ public class CheckoutPage extends BasePage {
         WebElement e = waitForElementToBeVisible(firstName);
         e.clear();
         e.sendKeys(txt);
+        return this;
+    }
+    public CheckoutPage selectCountry(String countryName){
+        Select select = new Select(driver.findElement(countryDropDown));
+        select.selectByVisibleText(countryName);
+        return this;
+    }
+    public CheckoutPage selectState(String stateName){
+        Select select = new Select(driver.findElement(stateDropDown));
+        select.selectByVisibleText(stateName);
         return this;
     }
 
@@ -79,9 +93,11 @@ public class CheckoutPage extends BasePage {
     public CheckoutPage setBillingAddress(BillingAddress billingAddress){
         return enterTextInFirstName(billingAddress.getFirstName()).
                 enterTextInLastName(billingAddress.getLastName()).
+                selectCountry(billingAddress.getCountry()).
                 enterTextInAddress1(billingAddress.getAddress1()).
                 enterTextInAddress2(billingAddress.getAddress2()).
                 enterTextInCity(billingAddress.getCity()).
+                selectState(billingAddress.getState()).
                 enterTextInPostcode(billingAddress.getPostalCode()).
                 enterTextInEmail(billingAddress.getEmail());
     }
