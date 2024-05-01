@@ -12,11 +12,14 @@ public class CartPage extends BasePage {
         super(driver);
     }
     public String getProductName(){
-        return driver.findElement(productName).getText();
+        return waitForElementToBeVisible(productName).getText();
+        //return driver.findElement(productName).getText();
 
     }
     public CheckoutPage clickCheckoutBtn(){
-        driver.findElement(clickCheckoutBtn).click();
+        waitForElementToBeVisible(clickCheckoutBtn)
+        .click();
+        //driver.findElement(clickCheckoutBtn).click();
         return new CheckoutPage(driver);
     }
 }

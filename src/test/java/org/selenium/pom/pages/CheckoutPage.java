@@ -1,18 +1,12 @@
 package org.selenium.pom.pages;
 
-import io.opentelemetry.exporter.logging.SystemOutLogRecordExporter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.selenium.pom.base.BasePage;
 import org.selenium.pom.objects.BillingAddress;
 import org.selenium.pom.objects.LoginUser;
-
-import java.time.Duration;
-import java.util.List;
 
 public class CheckoutPage extends BasePage {
 
@@ -35,44 +29,51 @@ public class CheckoutPage extends BasePage {
         super(driver);
     }
     public CheckoutPage enterTextInFirstName(String txt) {
-        driver.findElement(firstName).clear();
-        driver.findElement(firstName).sendKeys(txt);
+        WebElement e = waitForElementToBeVisible(firstName);
+        e.clear();
+        e.sendKeys(txt);
         return this;
     }
 
     public CheckoutPage enterTextInLastName(String txt) {
-        driver.findElement(lastName).clear();
-        driver.findElement(lastName).sendKeys(txt);
+        WebElement e = waitForElementToBeVisible(lastName);
+        e.clear();
+        e.sendKeys(txt);
         return this;
     }
 
     public CheckoutPage enterTextInAddress1(String txt) {
-        driver.findElement(address1).clear();
-        driver.findElement(address1).sendKeys(txt);
+        WebElement e = waitForElementToBeVisible(address1);
+        e.clear();
+        e.sendKeys(txt);
         return this;
     }
 
     public CheckoutPage enterTextInAddress2(String txt) {
-        driver.findElement(address2).clear();
-        driver.findElement(address2).sendKeys(txt);
+        WebElement e = waitForElementToBeVisible(address2);
+        e.clear();
+        e.sendKeys(txt);
         return this;
     }
 
     public CheckoutPage enterTextInCity(String txt) {
-        driver.findElement(address2).clear();
-        driver.findElement(city).sendKeys(txt);
+        WebElement e = waitForElementToBeVisible(city);
+        e.clear();
+        e.sendKeys(txt);
         return this;
     }
 
     public CheckoutPage enterTextInPostcode(String txt) {
-        driver.findElement(postcode).clear();
-        driver.findElement(postcode).sendKeys(txt);
+        WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(postcode));
+        e.clear();
+        e.sendKeys(txt);
         return this;
     }
 
     public CheckoutPage enterTextInEmail(String txt) {
-        driver.findElement(email).clear();
-        driver.findElement(email).sendKeys(txt);
+        WebElement e = waitForElementToBeVisible(email);
+        e.clear();
+        e.sendKeys(txt);
         return this;
     }
     public CheckoutPage setBillingAddress(BillingAddress billingAddress){
@@ -92,23 +93,27 @@ public class CheckoutPage extends BasePage {
     }
 
     public String getSuccessNotice(){
-        return driver.findElement(successNotice).getText();
+        return waitForElementToBeVisible(successNotice).getText();
+        //return driver.findElement(successNotice).getText();
     }
     public CheckoutPage showLoginBtn(){
-        driver.findElement(showLoginBtn).click();
+        waitForElementToBeVisible(showLoginBtn).click();
+        //driver.findElement(showLoginBtn).click();
         return this;
 
     }
 
     private CheckoutPage enterUsername(String txt) {
-        driver.findElement(username).clear();
-        driver.findElement(username).sendKeys(txt);
+        WebElement e = waitForElementToBeVisible(username);
+        e.clear();
+        e.sendKeys(txt);
         return this;
     }
 
     private CheckoutPage enterPassword(String txt) {
-        driver.findElement(password).clear();
-        driver.findElement(password).sendKeys(txt);
+        WebElement e = waitForElementToBeVisible(password);
+        e.clear();
+        e.sendKeys(txt);
         return this;
     }
 
@@ -120,7 +125,7 @@ public class CheckoutPage extends BasePage {
 
     }
     public CheckoutPage clickLoginBtn(){
-        driver.findElement(loginBtn);
+        waitForElementToBeVisible(loginBtn).click();
         return this;
 
     }
