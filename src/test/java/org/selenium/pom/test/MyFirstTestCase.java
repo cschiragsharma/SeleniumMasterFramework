@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class MyFirstTestCase extends BaseTest {
 
-    @Test
+   @Test
     public void GuestCheckoutUsingDirectBankTransfer() throws IOException {
         String searchFor="Blue";
         BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json",BillingAddress.class);
