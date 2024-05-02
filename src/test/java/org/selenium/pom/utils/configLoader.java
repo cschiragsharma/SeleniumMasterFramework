@@ -12,7 +12,7 @@ public class configLoader {
         properties = PropertyUtils.propertyLoader("src/test/resources/config.properties");
     }
 
-    public configLoader getInstance(){
+    public static configLoader getInstance(){
         if(configLoader == null){
             configLoader = new configLoader();
         }

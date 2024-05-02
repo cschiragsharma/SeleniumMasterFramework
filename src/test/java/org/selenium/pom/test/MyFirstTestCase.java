@@ -9,6 +9,7 @@ import org.selenium.pom.pages.CheckoutPage;
 import org.selenium.pom.pages.HomePage;
 import org.selenium.pom.pages.StorePage;
 import org.selenium.pom.utils.JacksonUtils;
+import org.selenium.pom.utils.configLoader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -48,7 +49,7 @@ public class MyFirstTestCase extends BaseTest {
         String searchFor="Blue";
         BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json",BillingAddress.class);
         Product product = new Product(1215);
-        LoginUser loginUser= new LoginUser("demouser0909","demopass");
+        LoginUser loginUser= new LoginUser(configLoader.getInstance().getUsername(),configLoader.getInstance().getPassword());
 
         StorePage storePage= new HomePage(getDriver()).
                 load().
