@@ -20,6 +20,10 @@ public class StorePage extends BasePage {
         waitForElementToBeVisible(searchFld).sendKeys(txt);
         return this;
     }
+    public StorePage load(){
+        load("/store");
+        return this;
+    }
     public Boolean isLoaded(){
        return wait.until(ExpectedConditions.urlContains("/store"));
     }
