@@ -1,20 +1,19 @@
-<suite name="Suite1" verbose="1" parallel = "tests">
-    <test name="Firefox" parallel = "methods">
+<suite name="Suite1" verbose="1" thread-count="2" parallel = "tests">
+    <test name="Chrome" thread-count="7" parallel = "methods">
 
-        <parameter name="browser" value="FIREFOX"/>
-        <classes>
-            <class name="org.selenium.pom.test.MyFirstTestCase" >
+        <parameter name="browser" value="CHROME"/>
+        <packages>
+            <package name="org.selenium.pom.test" />
 
-            </class>
-        </classes>
+        </packages>
     </test>
-    <test name="Chrome" parallel = "methods">
+    <!--<test name="Chrome" thread-count="5" parallel = "methods">
 
         <parameter name="browser" value="CHROME"/>
         <classes>
-            <class name="org.selenium.pom.test.MyFirstTestCase" >
+            <class name="org.selenium.pom.test.CheckoutTest" >
 
             </class>
         </classes>
-    </test>
+    </test>-->
 </suite>

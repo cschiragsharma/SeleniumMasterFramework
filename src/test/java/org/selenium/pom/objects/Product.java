@@ -15,7 +15,7 @@ public class Product {
        Product[] products = JacksonUtils.deserializeJson("products.json",Product[].class);
        for(Product product: products){
            if(product.id == id){
-               this.id=getId();
+               this.id=id;
                this.name=product.getName();
            }
        }
