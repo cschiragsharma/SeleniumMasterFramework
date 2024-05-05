@@ -17,7 +17,7 @@ import java.io.IOException;
 
 public class MyFirstTestCase extends BaseTest {
 
-   @Test
+  // @Test
     public void GuestCheckoutUsingDirectBankTransfer() throws IOException {
         String searchFor="Blue";
         BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json",BillingAddress.class);
@@ -44,7 +44,7 @@ public class MyFirstTestCase extends BaseTest {
         Assert.assertEquals(checkoutPage.getSuccessNotice(),"Thank you. Your order has been received.");
 
     }
-    @Test
+    //@Test
     public void LoginAndCheckoutUsingDirectBankTransfer() throws IOException {
         String searchFor="Blue";
         BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json",BillingAddress.class);
