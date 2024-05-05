@@ -30,6 +30,7 @@ public class CheckoutPage extends BasePage {
         private final By directBankTransferRadioButton = By.id("payment_method_bacs");
         private final By alternateCountryDropdown = By.id("select2-billing_country-container");
         private final By alternateStateDropdown = By.id("select2-billing_state-container");
+        private final By productName = By.cssSelector("td[class='product-name']");
 
 
     public CheckoutPage(WebDriver driver) {
@@ -39,6 +40,10 @@ public class CheckoutPage extends BasePage {
         WebElement e = waitForElementToBeVisible(firstName);
         e.clear();
         e.sendKeys(txt);
+        return this;
+    }
+    public CheckoutPage load(){
+        load("/checkout/");
         return this;
     }
     public CheckoutPage selectCountry(String countryName){
@@ -166,6 +171,9 @@ public class CheckoutPage extends BasePage {
 
             }
             return this;
+    }
+    public String getProductName(){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(productName)).getText();
     }
 
 }

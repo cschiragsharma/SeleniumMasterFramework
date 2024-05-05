@@ -1,6 +1,5 @@
 package org.selenium.pom.test;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import org.selenium.pom.base.BaseTest;
 import org.selenium.pom.objects.Product;
 import org.selenium.pom.pages.CartPage;
@@ -10,7 +9,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class AddToCart extends BaseTest {
+public class AddToCartTest extends BaseTest {
 
     @Test
     public void addToCartFromStorePage() throws IOException {

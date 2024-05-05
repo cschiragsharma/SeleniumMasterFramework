@@ -12,7 +12,7 @@
 
         <parameter name="browser" value="CHROME"/>
         <classes>
-            <class name="org.selenium.pom.test.AddToCart" >
+            <class name="org.selenium.pom.test.CheckoutTest" >
 
             </class>
         </classes>
