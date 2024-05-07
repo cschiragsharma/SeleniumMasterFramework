@@ -3,6 +3,7 @@ package org.selenium.pom.test;
 import org.junit.Assert;
 import org.selenium.pom.api.actions.CartApi;
 import org.selenium.pom.api.actions.SignUpApi;
+import org.selenium.pom.base.BasePage;
 import org.selenium.pom.base.BaseTest;
 import org.selenium.pom.objects.LoginUser;
 import org.selenium.pom.objects.Product;
@@ -12,7 +13,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class LoginTest extends BaseTest {
+public class LoginTest extends BaseTest  {
     @Test
     public void loginDuringCheckout() throws IOException, InterruptedException {
 

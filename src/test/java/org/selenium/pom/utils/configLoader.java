@@ -11,7 +11,7 @@ public class configLoader {
 
         properties = PropertyUtils.propertyLoader("src/test/resources/config.properties");
     }
-
+//singleton design pattern
     public static configLoader getInstance(){
         if(configLoader == null){
             configLoader = new configLoader();
