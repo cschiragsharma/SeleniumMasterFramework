@@ -3,7 +3,6 @@ package org.selenium.pom.test;
 import org.junit.Assert;
 import org.selenium.pom.api.actions.CartApi;
 import org.selenium.pom.api.actions.SignUpApi;
-import org.selenium.pom.base.BasePage;
 import org.selenium.pom.base.BaseTest;
 import org.selenium.pom.objects.LoginUser;
 import org.selenium.pom.objects.Product;
@@ -15,7 +14,7 @@ import java.io.IOException;
 
 public class LoginTest extends BaseTest  {
     @Test
-    public void loginDuringCheckout() throws IOException, InterruptedException {
+    public void LoginDuringCheckout() throws IOException, InterruptedException {
 
         String username = "demouser"+ new FakerUtils().generateRandomNumber();
         LoginUser user = new LoginUser().
@@ -41,4 +40,10 @@ public class LoginTest extends BaseTest  {
 
 
     }
+
+    @Test
+    public void LoginFails(){
+
+    }
+
 }

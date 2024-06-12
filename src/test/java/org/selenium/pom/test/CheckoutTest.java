@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class CheckoutTest extends BaseTest {
     @Test
-    public void guestCheckoutUsingDirectBankTransfer() throws IOException {
+    public void GuestCheckoutUsingDirectBankTransfer() throws IOException {
         CheckoutPage checkoutPage = new CheckoutPage(getDriver()).load();
         CartApi cartApi = new CartApi();
         cartApi.addToCart(1215,1);
@@ -55,6 +55,16 @@ public class CheckoutTest extends BaseTest {
                 clickPlaceOrderBtn();
 
         Assert.assertEquals(checkoutPage.getSuccessNotice(),"Thank you. Your order has been received.");
+
+    }
+
+    @Test
+    public void GuestCheckoutUsingCashOnDelivery(){
+
+    }
+
+    @Test
+    public void LoginAndCheckoutUsingCashOnDelivery(){
 
     }
 }

@@ -12,12 +12,22 @@ import java.io.IOException;
 public class AddToCartTest extends BaseTest {
 
     @Test
-    public void addToCartFromStorePage() throws IOException {
+    public void AddToCartFromStorePage() throws IOException {
         Product product = new Product(1215);
         CartPage cartPage = new StorePage(getDriver()).
                 load().
                 clickAddToCartBtn(product.getName()).
                 viewCartBtn();
         Assert.assertEquals(cartPage.getProductName(), product.getName());
+    }
+
+    @Test
+    public void AddFeaturedProductToCart(){
+
+    }
+
+    @Test
+    public void AddToCartFromProductPage(){
+
     }
 }

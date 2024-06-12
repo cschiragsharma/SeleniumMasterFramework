@@ -8,11 +8,21 @@ import org.testng.annotations.Test;
 public class SearchTest extends BaseTest {
 
     @Test
-    public void searchWithPartialMatch(){
+    public void SearchWithPartialMatch(){
         String searchFor = "Blue";
         StorePage storePage= new StorePage(getDriver()).load().
         search(searchFor);
         Assert.assertEquals(storePage.getTitle(),"Search results: “"+searchFor+"”");
+
+    }
+
+    @Test
+    public void SearchWithExactMatch(){
+
+    }
+
+    @Test
+    public void SearchNonExistingProduct(){
 
     }
 }

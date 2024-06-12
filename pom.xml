@@ -21,8 +21,8 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
-<!--                    <parallel>methods</parallel>
-                    <threadCount>2</threadCount>-->
+                    <parallel>methods</parallel>
+                    <threadCount>6</threadCount>
                     <!--<suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>-->
@@ -85,6 +85,12 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20240303</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.17.0</version>
         </dependency>
     </dependencies>
 

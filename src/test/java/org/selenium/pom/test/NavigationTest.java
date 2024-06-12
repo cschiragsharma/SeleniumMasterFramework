@@ -15,5 +15,14 @@ public class NavigationTest extends BaseTest {
         Assert.assertEquals(storePage.getTitle(),"Store");
 
     }
+    @Test
+    public void NavigateFromStoreToProductPage(){
+
+    }
+
+    @Test
+    public void NavigateFromHomeToFeaturedProductPage(){
+
+    }
 
 }
