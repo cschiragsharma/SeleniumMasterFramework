@@ -1,5 +1,7 @@
 package org.selenium.pom.test;
 
+import io.restassured.http.Cookies;
+import org.selenium.pom.api.actions.BillingApi;
 import org.selenium.pom.api.actions.CartApi;
 import org.selenium.pom.api.actions.SignUpApi;
 import org.selenium.pom.base.BaseTest;
@@ -59,12 +61,65 @@ public class CheckoutTest extends BaseTest {
     }
 
     @Test
-    public void GuestCheckoutUsingCashOnDelivery(){
+    public void GuestCheckoutUsingCashOnDelivery() throws IOException {
+        BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json", BillingAddress.class);
+        CheckoutPage checkoutPage = new CheckoutPage(getDriver()).load();
+
+        CartApi cartApi = new CartApi(new Cookies());
+        cartApi.addToCart(1215, 1);
+        injectCookiesToBrowser(cartApi.getCookies());
+
+        checkoutPage.load().
+                setBillingAddress(billingAddress).
+                selectCashOnDeliveryTransfer().
+                clickPlaceOrderBtn();
+        Assert.assertEquals(checkoutPage.getNotice(), "Thank you. Your order has been received.");
 
     }
 
     @Test
-    public void LoginAndCheckoutUsingCashOnDelivery(){
+    public void LoginAndCheckoutUsingCashOnDelivery() throws IOException {
+        BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json", BillingAddress.class);
+        String username = "demouser" + new FakerUtils().generateRandomNumber();
+        LoginUser user = new LoginUser(username,"demopwd",username +"@askomdch.com");
 
+        SignUpApi signUpApi = new SignUpApi();
+        signUpApi.register(user);
+        CartApi cartApi = new CartApi(signUpApi.getCookies());
+        Product product = new Product(1215);
+        cartApi.addToCart(product.getId(),1);
+
+        CheckoutPage checkoutPage = new CheckoutPage(getDriver()).load();
+        injectCookiesToBrowser(signUpApi.getCookies());
+        checkoutPage.
+                load().
+                selectDirectBankTransfer().
+                clickPlaceOrderBtn();
+        Assert.assertEquals(checkoutPage.getNotice(), "Thank you. Your order has been received.");
+
+
+    }
+
+    @Test
+    public void CheckoutWithAnAccountHavingABillingAddress() throws IOException {
+        BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json", BillingAddress.class);
+        String username = "demouser" + new FakerUtils().generateRandomNumber();
+        LoginUser user = new LoginUser(username, "demopwd", username + "@askomdch.com");
+
+        SignUpApi signUpApi = new SignUpApi();
+        signUpApi.register(user);
+        BillingApi billingApi = new BillingApi(signUpApi.getCookies());
+        billingApi.addBillingAddress(billingAddress);
+
+        CartApi cartApi = new CartApi(signUpApi.getCookies());
+        Product product = new Product(1215);
+        cartApi.addToCart(product.getId(), 1);
+
+        CheckoutPage checkoutPage = new CheckoutPage(getDriver()).load();
+        injectCookiesToBrowser(signUpApi.getCookies());
+        checkoutPage.load();
+        checkoutPage.selectDirectBankTransfer().
+                clickPlaceOrderBtn();
+        Assert.assertEquals(checkoutPage.getNotice(), "Thank you. Your order has been received.");
     }
 }

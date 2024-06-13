@@ -8,4 +8,10 @@ public class FakerUtils {
         return faker.number().randomNumber(6,true);
 
     }
+
+    public String generateRandomName(){
+        Faker faker = new Faker();
+        return faker.name().fullName();
+    }
+
 }

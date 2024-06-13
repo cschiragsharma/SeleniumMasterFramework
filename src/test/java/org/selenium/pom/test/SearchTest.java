@@ -1,9 +1,14 @@
 package org.selenium.pom.test;
 
 import org.selenium.pom.base.BaseTest;
+import org.selenium.pom.objects.Product;
+import org.selenium.pom.pages.ProductPage;
 import org.selenium.pom.pages.StorePage;
+import org.selenium.pom.utils.FakerUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.io.IOException;
 
 public class SearchTest extends BaseTest {
 
@@ -17,12 +22,21 @@ public class SearchTest extends BaseTest {
     }
 
     @Test
-    public void SearchWithExactMatch(){
+    public void SearchWithExactMatch() throws IOException {
+        Product product = new Product(1215);
+
+        ProductPage productPage= new StorePage(getDriver()).load().
+                                    searchExactMatch(product.getName());
+        Assert.assertEquals(productPage.getProductTitle(),product.getName());
 
     }
 
     @Test
     public void SearchNonExistingProduct(){
+
+        StorePage storePage= new StorePage(getDriver()).load().
+                                    search(new FakerUtils().generateRandomName());
+        Assert.assertEquals(storePage.getInfo(),"No products were found matching your selection.");
 
     }
 }

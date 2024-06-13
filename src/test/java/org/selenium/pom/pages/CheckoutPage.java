@@ -31,6 +31,8 @@ public class CheckoutPage extends BasePage {
         private final By alternateCountryDropdown = By.id("select2-billing_country-container");
         private final By alternateStateDropdown = By.id("select2-billing_state-container");
         private final By productName = By.cssSelector("td[class='product-name']");
+        private final By cashOnDeliveryTransferRadioBtn = By.id("payment_method_cod");
+
 
 
     public CheckoutPage(WebDriver driver) {
@@ -131,11 +133,18 @@ public class CheckoutPage extends BasePage {
         return waitForElementToBeVisible(successNotice).getText();
         //return driver.findElement(successNotice).getText();
     }
+    public String getNotice(){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(successNotice)).getText();
+    }
     public CheckoutPage showLoginBtn(){
         waitForElementToBeVisible(showLoginBtn).click();
         //driver.findElement(showLoginBtn).click();
         return this;
 
+    }
+    public CheckoutPage selectCashOnDeliveryTransfer(){
+        wait.until(ExpectedConditions.elementToBeClickable(cashOnDeliveryTransferRadioBtn)).click();
+        return this;
     }
 
     private CheckoutPage enterUsername(String txt) {
