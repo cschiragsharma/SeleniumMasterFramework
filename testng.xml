@@ -3,7 +3,7 @@
 
         <parameter name="browser" value="CHROME"/>
         <packages>
-            <package name="org.selenium.pom.test" />
+            <package name="org.selenium.pom.tests" />
 
         </packages>
     </test>
@@ -11,7 +11,7 @@
 
         <parameter name="browser" value="CHROME"/>
         <classes>
-            <class name="org.selenium.pom.test.CheckoutTest" >
+            <class name="org.selenium.pom.tests.CheckoutTest" >
 
             </class>
         </classes>

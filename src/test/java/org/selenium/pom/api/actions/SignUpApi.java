@@ -2,10 +2,12 @@ package org.selenium.pom.api.actions;
 
 import com.google.common.collect.HashBiMap;
 import groovy.lang.GroovyObjectSupport;
+import io.restassured.RestAssured;
 import io.restassured.http.Cookies;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -44,6 +46,8 @@ public class SignUpApi extends GroovyObjectSupport {
     }
     private Response getAccount(){
         Cookies cookies = new Cookies();
+//        RequestSpecification httpRequest = RestAssured.given();
+//        Response response1 = httpRequest.get("/account").then().extract().response();
        Response response = given().
                 baseUri(configLoader.getInstance().getBaseUrl()).
                 cookies(cookies).

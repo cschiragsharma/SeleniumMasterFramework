@@ -7,11 +7,19 @@ public class configLoader {
     private final Properties properties;
     private static configLoader configLoader;
 
+    public static org.selenium.pom.utils.configLoader getConfigLoader() {
+        return configLoader;
+    }
+
+    public static void setConfigLoader(org.selenium.pom.utils.configLoader configLoader) {
+        org.selenium.pom.utils.configLoader.configLoader = configLoader;
+    }
+
     private configLoader() {
 
         properties = PropertyUtils.propertyLoader("src/test/resources/config.properties");
     }
-
+//singleton design pattern
     public static configLoader getInstance(){
         if(configLoader == null){
             configLoader = new configLoader();

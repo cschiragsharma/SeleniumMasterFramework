@@ -10,6 +10,7 @@ public class CartPage extends BasePage {
     private final By productName = By.cssSelector("td[class='product-name'] a");
     private final By clickCheckoutBtn = By.cssSelector(".checkout-button");
     private final By cartHeading = By.cssSelector(".has-text-align-center");
+
     //page factory
 //    @FindBy(css = "td[class='product-name'] a") private By  productName;
 //    @FindBy(css = ".checkout-button") private By clickCheckoutBtn;
