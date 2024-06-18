@@ -13,7 +13,6 @@ public class StorePage extends BasePage {
     private final By searchFld = By.id("woocommerce-product-search-field-0");
     private final By searchBtn = By.cssSelector("button[value='Search']");
     private final By title = By.cssSelector(".woocommerce-products-header__title.page-title");
-    private final By viewCartLink = By.cssSelector("a[title='View cart']");
     private final By infoTxt = By.cssSelector(".woocommerce-info");
 
 
@@ -49,19 +48,7 @@ public class StorePage extends BasePage {
 
     }
 
-    private By getAddToCartBtnElement(String productName){
-        return By.cssSelector("a[aria-label='Add “"+ productName +"” to your cart']");
-    }
 
-    public StorePage clickAddToCartBtn(String productName){
-        By addToCartBtn = getAddToCartBtnElement(productName);
-        waitForElementToBeVisible(addToCartBtn).click();
-        return this;
-    }
-    public CartPage viewCartBtn(){
-        waitForElementToBeVisible(viewCartLink).click();
-        return new CartPage(driver);
-    }
 
     public ProductPage navigateToTheProduct(Integer id) throws IOException {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//h2[normalize-space()='"+ new Product(id).getName() + "']"))).click();

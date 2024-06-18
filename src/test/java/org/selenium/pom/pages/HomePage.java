@@ -12,23 +12,19 @@ import java.io.IOException;
 
 public class HomePage extends BasePage {
 
-    private final By storeMenuLink = By.cssSelector("#menu-item-1227 > a");
 
 
     public HomePage(WebDriver driver) {
         super(driver);
+        myHeader = new MyHeader(driver);
+        productThumbnail = new ProductThumbnail(driver);
+
     }
 
     public HomePage load() {
         load("/");
         wait.until(ExpectedConditions.titleContains("AskOmDch"));
         return this;
-    }
-
-    public StorePage navigateToStoreUsingMenu(){
-
-        waitForElementToBeVisible(storeMenuLink).click();
-        return new StorePage(driver);
     }
 
     public ProductPage navigateToTheProduct(int id) throws IOException {
