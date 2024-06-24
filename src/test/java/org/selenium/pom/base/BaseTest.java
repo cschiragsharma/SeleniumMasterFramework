@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class BaseTest {
-    protected ThreadLocal <WebDriver> driver = new ThreadLocal<>();
+    private ThreadLocal <WebDriver> driver = new ThreadLocal<>();
 
     protected WebDriver getDriver() {
         return this.driver.get();
